@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Timers;
+using System.Globalization;
 
 namespace WpfApp1
 {
@@ -38,16 +40,26 @@ namespace WpfApp1
             Godzina.SelectedIndex = h;
             Minuta.SelectedIndex = m;
             Sekunda.SelectedIndex = s;
+            
         }
-
-       /* private void ComboBox_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }*/
-
+        
         private void Zapisz_Click(object sender, RoutedEventArgs e)
         {
+            Timer alarm = new Timer();
+            alarm.Elapsed += new ElapsedEventHandler(wydarzenie);
+            alarm.Interval = 100;
+            alarm.Enabled = true;
 
+            string data_alarmu = Data.SelectedDate + " " + Godzina.SelectedIndex + " " + Minuta.SelectedIndex + " " + Sekunda.SelectedIndex;
+
+            DateTime czasalarmu = DateTime.ParseExact(data_alarmu, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+
+            MessageBox.Show(czasalarmu.ToString());
+        }
+
+        private void wydarzenie(object sender, ElapsedEventArgs e)
+        {
+            
         }
     }
 }
