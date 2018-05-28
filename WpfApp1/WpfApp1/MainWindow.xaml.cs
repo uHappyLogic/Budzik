@@ -61,6 +61,9 @@ namespace WpfApp1
 				.AddMinutes(Minuta.SelectedIndex)
 				.AddSeconds(Sekunda.SelectedIndex);
 
+	        DateBlock.Text = czasalarmu.ToString();
+	        ContentBlock.Text = Description.Text;
+
 			MessageBox.Show(czasalarmu.ToString());
         }
 
